@@ -11,12 +11,12 @@ const button1 = document.getElementById("button1");
 const button2 = document.getElementById("button2");
 const button3 = document.getElementById("button3");
 const text = document.getElementById("text");
-const xpText = document.getElementById("xpTextt");
+const xpText = document.getElementById("xpText");
 const healthText = document.getElementById("healthText");
 const goldText = document.getElementById("goldText");
 const monsterStats = document.getElementById("monsterStats");
-const monsterNameText = document.getElementById("monsterNameText");
-const monsterHealthText= document.getElementById("monsterHealthText");
+const monsterNameText = document.getElementById("monsterName");
+const monsterHealthText= document.getElementById("monsterHealth");
 
 const weapons = [
     {
@@ -83,19 +83,19 @@ const locations = [{
 {
     name : "kill monster",
     "button text" : ["Go to town square", "Go to town square" , "Go to town square"],
-    "button function" : [goTown,goTown,goTown],
+    "button functions" : [goTown,goTown,goTown],
     text : 'The monster screams "Arghhhaa!" as it dies. You gain experience points and gold'
 },
 {
     name : "lose",
     "button text" : ["REPLAY?", "REPLAY?" , "REPLAY?"],
-    "button function" : [restart, restart, restart],
+    "button functions" : [restart, restart, restart],
     text : 'You die 💀'
 },
 {
     name : "",
     "button text" : ["REPLAY?", "REPLAY?" , "REPLAY?"],
-    "button function" : [restart, restart, restart],
+    "button functions" : [restart, restart, restart],
     text : 'You defeat the dragon! YOU WIN THE GAME! 🎉'
 }
 
@@ -162,7 +162,7 @@ function buyWeapon(){
 function sellWeapon(){
     if (inventory.length > 1){
         gold += 15
-        gold.innerText = gold
+        goldText.innerText = gold
         let currentWeapon = inventory.shift();
         text.innerText  = "You sold a " + currentWeapon + ".";
         text.innerText += "In your inventory you have: " + inventory
@@ -218,7 +218,7 @@ function dodge(){
 
 function defeatMonster(){
     gold += Math.floor(monsters[fighting].level * 6.7)
-    xp = monsters[fighting].level
+    xp += monsters[fighting].level
     goldText.innerText = gold
     xpText.innerText = xp
     update(locations[4])
@@ -230,7 +230,7 @@ function lose(){
 }
 
 function winGame(){
-    update(location[6])
+    update(locations[6])
 }
 
 function restart(){
